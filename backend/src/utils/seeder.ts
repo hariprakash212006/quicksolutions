@@ -108,6 +108,14 @@ export const seedDatabase = async () => {
       status: 'active',
     });
 
+    const solarCat = await Category.create({
+      name: 'Solar Panels & Systems',
+      slug: 'solar-panels',
+      description: 'Monocrystalline & Polycrystalline Solar Panels, On-Grid/Off-Grid Inverters & Rooftop Solar Kits',
+      image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&auto=format&fit=crop&q=80',
+      status: 'active',
+    });
+
     // 3. Products
     await Product.deleteMany({});
     await Product.create([
@@ -331,6 +339,84 @@ export const seedDatabase = async () => {
         averageRating: 4.9,
         numOfReviews: 15,
       },
+      {
+        name: 'Waaree 550W Mono PERC Half-Cut Solar Panel',
+        slug: 'waaree-550w-mono-perc-solar-panel',
+        SKU: 'WR-550-MONO-HC',
+        category: solarCat._id,
+        brand: 'Waaree',
+        mrp: 18500,
+        sellingPrice: 14999,
+        discount: 19,
+        gst: 5,
+        hsn: '85414011',
+        stock: 25,
+        lowStockThreshold: 5,
+        images: [
+          'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&auto=format&fit=crop&q=80',
+        ],
+        shortDescription: '550W Mono PERC Half-Cut cells with 21.5% efficiency, ideal for residential & commercial rooftop installations.',
+        description:
+          'Waaree 550W Mono PERC solar panel features half-cut cell technology for superior shade tolerance and higher energy yield. BIS certified, IEC 61215 & IEC 61730 compliant. Perfect for on-grid and off-grid rooftop solar systems.',
+        specifications: {
+          'Rated Power': '550 Wp',
+          'Cell Type': 'Mono PERC Half-Cut (144 Cells)',
+          'Efficiency': '21.5%',
+          'Dimensions': '2278 × 1134 × 35 mm',
+          'Weight': '28.5 kg',
+          'Warranty': '25 Years Linear Performance Warranty',
+        },
+        features: [
+          'Half-cut cell technology for better shade performance',
+          'Anti-PID, Salt Mist & Ammonia resistant',
+          'BIS Certified (IS/IEC 61215 & 61730)',
+          'Suitable for On-Grid & Off-Grid installations',
+        ],
+        warranty: '12 Years Product Warranty + 25 Years Performance Warranty',
+        featured: true,
+        bestSeller: true,
+        averageRating: 4.8,
+        numOfReviews: 34,
+      },
+      {
+        name: 'Luminous 3KW On-Grid Solar Inverter with Wi-Fi Monitoring',
+        slug: 'luminous-3kw-on-grid-solar-inverter',
+        SKU: 'LUM-3KW-ONGRID',
+        category: solarCat._id,
+        brand: 'Luminous',
+        mrp: 42000,
+        sellingPrice: 32999,
+        discount: 21,
+        gst: 12,
+        hsn: '85044090',
+        stock: 15,
+        lowStockThreshold: 3,
+        images: [
+          'https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=800&auto=format&fit=crop&q=80',
+        ],
+        shortDescription: '3KW single-phase grid-tied solar inverter with built-in Wi-Fi for real-time generation monitoring via app.',
+        description:
+          'Luminous NXI 3KW On-Grid Solar Inverter converts DC power from solar panels to AC for home use with net-metering support. Features dual MPPT tracking, IP65 outdoor rating, and built-in Wi-Fi for real-time monitoring through the Luminous Solar app.',
+        specifications: {
+          'Rated Power': '3 KW',
+          'Input Voltage Range': '80V – 500V DC',
+          'MPPT Channels': '2 MPPT with 1 string each',
+          'Efficiency': '97.6% Peak',
+          'Protection': 'IP65 Outdoor Rated',
+          'Monitoring': 'Built-in Wi-Fi, Luminous Solar App',
+        },
+        features: [
+          'Dual MPPT for maximum energy harvest',
+          'Net metering compatible — sell excess power to grid',
+          'IP65 weatherproof for outdoor installation',
+          'Real-time monitoring via Luminous Solar mobile app',
+        ],
+        warranty: '5 Years Comprehensive Warranty',
+        featured: true,
+        bestSeller: false,
+        averageRating: 4.7,
+        numOfReviews: 18,
+      },
     ]);
 
     // 4. Coupons
@@ -393,6 +479,12 @@ export const syncCategoryImages = async () => {
         name: 'Installation & AMC Services',
         image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&auto=format&fit=crop&q=80',
         description: 'Doorstep CCTV cabling setup, RO filter servicing & Annual Maintenance Contracts',
+      },
+      {
+        slug: 'solar-panels',
+        name: 'Solar Panels & Systems',
+        image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&auto=format&fit=crop&q=80',
+        description: 'Monocrystalline & Polycrystalline Solar Panels, On-Grid/Off-Grid Inverters & Rooftop Solar Kits',
       },
     ];
 

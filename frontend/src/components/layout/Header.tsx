@@ -97,12 +97,13 @@ export const Header: React.FC = () => {
     { to: '/shop?category=cctv-security', icon: <Camera className="w-5 h-5 text-brand-500" />, label: 'CCTV & Security', desc: 'Smart AI Cameras & PTZ' },
     { to: '/shop?category=dvr-nvr-systems', icon: <HardDrive className="w-5 h-5 text-purple-500" />, label: 'DVR & NVR', desc: '4/8/16 Channel Recorders' },
     { to: '/shop?category=water-purifiers-ro', icon: <Droplets className="w-5 h-5 text-cyan-500" />, label: 'RO Purifiers', desc: 'Copper & Alkaline Systems' },
+    { to: '/shop?category=solar-panels', icon: <Sun className="w-5 h-5 text-yellow-500" />, label: 'Solar Panels', desc: 'Rooftop & Power Systems' },
     { to: '/shop?category=accessories', icon: <Package className="w-5 h-5 text-amber-500" />, label: 'Accessories', desc: 'Cables, Power Supplies' },
     { to: '/shop?category=installation-services', icon: <Wrench className="w-5 h-5 text-emerald-500" />, label: 'Installation', desc: 'Professional Setup' },
   ];
 
   return (
-    <header className={`sticky top-0 z-50 w-full transition-all duration-500 ${scrolled ? 'shadow-premium' : ''}`}>
+    <header className={`sticky top-0 ${isMobileMenuOpen ? 'z-[300]' : 'z-50'} w-full transition-all duration-500 ${scrolled ? 'shadow-premium' : ''}`}>
 
       {/* ── Top Utility & Running Announcement Bar (Mobile & Desktop) ── */}
       <div className="bg-slateCustom-950 text-slate-300 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider py-1.5 px-2.5 sm:px-4 border-b border-slate-900 overflow-hidden">
@@ -165,17 +166,18 @@ export const Header: React.FC = () => {
             </div>
           </div>
 
-          {/* Quick Help & Admin Panel (Desktop only) */}
-          <div className="hidden md:flex items-center space-x-5 shrink-0 text-[11px]">
-            <RouterLink to="/faq" className="hover:text-white transition-colors flex items-center gap-1">
+          {/* Quick Help & Admin Panel (Desktop & Mobile) */}
+          <div className="flex items-center space-x-2 sm:space-x-5 shrink-0 text-[11px]">
+            <RouterLink to="/faq" className="hidden md:flex hover:text-white transition-colors items-center gap-1">
               <Zap className="w-3.5 h-3.5 text-amber-400" /> Quick Help
             </RouterLink>
             {user?.role === 'admin' && (
               <RouterLink
                 to="/admin"
-                className="bg-brand-600 text-white px-2.5 py-0.5 rounded text-[10px] font-bold shadow-glow-brand hover:bg-brand-500 transition-colors"
+                className="bg-brand-600 text-white px-2 sm:px-2.5 py-0.5 rounded text-[9.5px] sm:text-[10px] font-bold shadow-glow-brand hover:bg-brand-500 transition-colors flex items-center gap-1 shrink-0"
               >
-                ADMIN PANEL
+                <ShieldCheck className="w-3 h-3 text-emerald-300" />
+                <span>ADMIN</span>
               </RouterLink>
             )}
           </div>
@@ -223,7 +225,7 @@ export const Header: React.FC = () => {
                   QUICK SOLUTIONS FOR U
                 </span>
                 <span className="text-[7.5px] xs:text-[8.5px] sm:text-[10px] md:text-[11px] font-bold tracking-[0.16em] text-brand-600 dark:text-brand-400 uppercase leading-none truncate">
-                  PREMIUM SECURITY & RO
+                  SECURITY • SOLAR • RO
                 </span>
               </div>
             </RouterLink>
@@ -437,7 +439,7 @@ export const Header: React.FC = () => {
                   onFocus={() => {
                     if (searchQuery.trim().length >= 2) setShowSuggestions(true);
                   }}
-                  placeholder="Search CCTV, RO Purifiers, Brands..."
+                  placeholder="Search CCTV, Solar, RO Purifiers..."
                   className="w-full bg-slate-100 dark:bg-slate-800/90 text-slate-900 dark:text-white placeholder-slate-400 pl-10 pr-10 py-2.5 rounded-xl text-sm border border-slate-200/50 dark:border-slate-700/50 focus:ring-2 focus:ring-brand-500 focus:outline-none transition-shadow shadow-inner"
                   autoFocus
                 />
@@ -556,7 +558,7 @@ export const Header: React.FC = () => {
                       QUICK SOLUTIONS FOR U
                     </span>
                     <span className="text-[8px] font-bold tracking-[0.2em] text-brand-600 dark:text-brand-400 uppercase mt-0.5">
-                      PREMIUM SECURITY
+                      SECURITY • SOLAR • RO
                     </span>
                   </div>
                 </RouterLink>
@@ -616,6 +618,25 @@ export const Header: React.FC = () => {
                       <ChevronRight className="w-4 h-4 opacity-40" />
                     </NavLink>
                   ))}
+
+                  {user?.role === 'admin' && (
+                    <NavLink
+                      to="/admin"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={({ isActive }) =>
+                        `flex items-center justify-between font-bold py-2.5 px-3.5 rounded-xl text-sm transition-colors ${
+                          isActive
+                            ? 'bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400'
+                            : 'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30'
+                        }`
+                      }
+                    >
+                      <span className="flex items-center gap-2">
+                        <ShieldCheck className="w-4 h-4 text-emerald-500" /> Admin Control Panel
+                      </span>
+                      <ChevronRight className="w-4 h-4 opacity-60" />
+                    </NavLink>
+                  )}
                 </div>
 
                 {/* Categories Accordion */}
@@ -645,12 +666,13 @@ export const Header: React.FC = () => {
               </div>
 
               {/* Drawer Footer with Theme Toggle & Account */}
-              <div className="p-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 space-y-3">
+              <div className="shrink-0 p-4 pb-24 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/90 space-y-3 relative z-30">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-slate-600 dark:text-slate-400">Appearance</span>
                   <button
+                    type="button"
                     onClick={toggleTheme}
-                    className="flex items-center gap-2 text-xs font-bold px-3 py-1.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 shadow-sm"
+                    className="flex items-center gap-2 text-xs font-bold px-3 py-1.5 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 shadow-sm active:scale-95 transition-transform cursor-pointer"
                   >
                     {theme === 'light' ? <><Moon className="w-3.5 h-3.5 text-slate-600" /> Dark</> : <><Sun className="w-3.5 h-3.5 text-amber-400" /> Light</>}
                   </button>
@@ -659,7 +681,7 @@ export const Header: React.FC = () => {
                 <RouterLink
                   to={user ? '/account' : '/login'}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="w-full flex items-center justify-center gap-2 py-3 bg-brand-600 hover:bg-brand-500 text-white rounded-xl text-xs font-bold shadow-md transition"
+                  className="w-full flex items-center justify-center gap-2 py-3 bg-brand-600 hover:bg-brand-500 active:scale-[0.98] text-white rounded-xl text-xs font-bold shadow-md transition touch-manipulation cursor-pointer"
                 >
                   <UserIcon className="w-4 h-4" />
                   <span>{user ? `My Account (${user.name})` : 'Sign In / Register'}</span>
@@ -669,7 +691,7 @@ export const Header: React.FC = () => {
                   <RouterLink
                     to="/admin"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="w-full flex items-center justify-center gap-2 py-2 bg-slate-800 text-brand-300 border border-slate-700 rounded-xl text-xs font-bold transition hover:bg-slate-700"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 bg-slate-900 dark:bg-slate-800 text-brand-300 border border-brand-500/40 rounded-xl text-xs font-bold transition hover:bg-slate-800 active:scale-[0.98] cursor-pointer touch-manipulation shadow-md"
                   >
                     <ShieldCheck className="w-4 h-4 text-emerald-400" /> Admin Control Panel
                   </RouterLink>

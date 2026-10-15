@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Home, Compass, ShoppingBag, User, Heart } from 'lucide-react';
+import { Home, Compass, ShoppingBag, User, Heart, ShieldCheck } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 import { useAuth } from '../../context/AuthContext';
@@ -27,7 +27,10 @@ export const MobileBottomNav: React.FC = () => {
   const navItems = [
     { icon: Home, label: 'Home', path: '/' },
     { icon: Compass, label: 'Shop', path: '/shop' },
-    { icon: Heart, label: 'Wishlist', path: user ? '/account?tab=wishlist' : '/login', badge: wishlistCount },
+    ...(user?.role === 'admin'
+      ? [{ icon: ShieldCheck, label: 'Admin', path: '/admin' }]
+      : [{ icon: Heart, label: 'Wishlist', path: user ? '/account?tab=wishlist' : '/login', badge: wishlistCount }]
+    ),
     { icon: ShoppingBag, label: 'Cart', path: '#', isCart: true, badge: cartItemsCount },
     { icon: User, label: user ? 'Account' : 'Sign In', path: user ? '/account' : '/login' },
   ];

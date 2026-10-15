@@ -88,15 +88,15 @@ export const Footer: React.FC = () => {
             </div>
             <div className="flex flex-col">
                 <span className="font-black text-xl tracking-tight text-white leading-none mb-1">QUICK SOLUTIONS</span>
-                <span className="text-[10px] font-bold tracking-[0.25em] text-brand-400 uppercase leading-none">PREMIUM SECURITY</span>
+                <span className="text-[10px] font-bold tracking-[0.25em] text-brand-400 uppercase leading-none">SECURITY • SOLAR • RO</span>
             </div>
           </div>
           <p className="text-sm text-slate-400 leading-relaxed font-medium pr-4">
-            {cms?.businessInfo?.footerText || 'Your trusted provider of 5MP Smart CCTV surveillance, DVR/NVR recorders, 14-stage RO water purifiers, and professional doorstep installation services in India.'}
+            {cms?.businessInfo?.footerText || 'Your trusted provider of 5MP Smart CCTV surveillance, solar panel systems, DVR/NVR recorders, 14-stage RO water purifiers, and professional doorstep installation services in India.'}
           </p>
           <div className="flex items-center gap-3 text-emerald-400 text-xs font-bold bg-slate-900 p-3 rounded-xl border border-slate-800">
             <ShieldCheck className="w-5 h-5 shrink-0" />
-            <span>Authorized Dealer of CP Plus, Hikvision & Dahua</span>
+            <span>Authorized Dealer of CP Plus, Hikvision, Waaree & Tata Solar</span>
           </div>
           {/* Social Links */}
           <div className="flex items-center gap-3 pt-2">
@@ -133,8 +133,9 @@ export const Footer: React.FC = () => {
             {[
               ['/shop?category=cctv-security', 'CCTV Security Cameras'],
               ['/shop?category=dvr-nvr-systems', 'DVR / NVR Recorders'],
+              ['/shop?category=solar-panels', 'Solar Panels & Systems'],
               ['/shop?category=water-purifiers-ro', 'RO Water Purifiers & Filters'],
-              ['/shop?category=accessories', 'Surveillance Accessories'],
+              ['/shop?category=accessories', 'Surveillance & Solar Accessories'],
               ['/shop?category=installation-services', 'Doorstep Installation & AMC'],
             ].map(([to, label]) => (
               <li key={to}>

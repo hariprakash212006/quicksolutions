@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   ShieldCheck, Wrench, Users, Award, Truck, Headphones,
-  Camera, Droplets, CheckCircle2, ArrowRight,
+  Camera, Droplets, Sun, CheckCircle2, ArrowRight,
 } from 'lucide-react';
 
 const fadeUp = (delay = 0) => ({
@@ -25,6 +25,7 @@ const milestones = [
   { year: '2020', event: 'Expanded to selling CP Plus & Hikvision products online.' },
   { year: '2022', event: 'Added RO water purifier range — partnered with Aqua Fresh & Kent.' },
   { year: '2024', event: 'Crossed 500+ happy customers across 10+ cities in India.' },
+  { year: '2025', event: 'Expanded into Solar Panel Installation & Dealership — partnered with Waaree, Tata Solar & Luminous.' },
   { year: '2026', event: 'Launched quicksolutionsforu.in — your complete security & water store.' },
 ];
 
@@ -47,8 +48,8 @@ export const About: React.FC = () => {
             About <span className="gradient-text">Quick Solutions For U</span>
           </motion.h1>
           <motion.p {...fadeUp(0.2)} className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
-            We are India's trusted one-stop destination for professional CCTV security systems and pure water solutions. 
-            Founded with a passion for making homes and businesses safer, we combine genuine products with expert installation.
+            We are India's trusted one-stop destination for professional CCTV security systems, solar panel installations, and pure water solutions. 
+            Founded with a passion for making homes and businesses safer and more sustainable, we combine genuine products with expert installation.
           </motion.p>
         </div>
       </section>
@@ -58,16 +59,17 @@ export const About: React.FC = () => {
         <motion.div {...fadeUp()} className="space-y-5">
           <span className="section-label">Our Mission</span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
-            Making Security & Clean Water Accessible to Every Indian Home
+            Making Security, Solar Energy & Clean Water Accessible to Every Indian Home
           </h2>
           <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
-            At Quick Solutions For U, we believe every family deserves the peace of mind that comes from reliable home security 
-            and access to pure, healthy drinking water. We started as a small installation service and grew into a full-fledged 
+            At Quick Solutions For U, we believe every family deserves the peace of mind that comes from reliable home security, 
+            sustainable solar energy, and access to pure, healthy drinking water. We started as a small installation service and grew into a full-fledged 
             e-commerce store serving customers across India.
           </p>
           <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
-            From a single 2MP camera installation to a 32-channel NVR system, or from a basic RO unit to a 14-stage copper 
-            alkaline purifier — we guide our customers to make the right choice for their needs and budget.
+            From a single 2MP camera installation to a 32-channel NVR system, from rooftop solar panel setups to complete 
+            on-grid/off-grid solar systems, or from a basic RO unit to a 14-stage copper alkaline purifier — we guide our 
+            customers to make the right choice for their needs and budget.
           </p>
           <Link
             to="/shop"
@@ -77,9 +79,10 @@ export const About: React.FC = () => {
           </Link>
         </motion.div>
 
-        <motion.div {...fadeUp(0.15)} className="grid grid-cols-2 gap-4">
+        <motion.div {...fadeUp(0.15)} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {[
             { icon: <Camera className="w-8 h-8 text-cyan-400" />, label: 'CCTV & Security', count: '100+ SKUs' },
+            { icon: <Sun className="w-8 h-8 text-yellow-400" />, label: 'Solar Solutions', count: '50+ Kits' },
             { icon: <Droplets className="w-8 h-8 text-blue-400" />, label: 'RO Purifiers', count: '50+ Models' },
             { icon: <Users className="w-8 h-8 text-brand-400" />, label: 'Happy Customers', count: '500+' },
             { icon: <Award className="w-8 h-8 text-amber-400" />, label: 'Years of Trust', count: '8 Years' },
@@ -141,7 +144,7 @@ export const About: React.FC = () => {
             Trusted Authorizations & Partnerships
           </motion.h2>
           <motion.div {...fadeUp(0.1)} className="flex flex-wrap justify-center gap-3">
-            {['CP Plus Authorized', 'Hikvision Partner', 'Dahua Dealer', 'Aqua Fresh Certified', 'Seagate Reseller'].map((badge) => (
+            {['CP Plus Authorized', 'Hikvision Partner', 'Dahua Dealer', 'Aqua Fresh Certified', 'Seagate Reseller', 'Waaree Solar Dealer', 'Luminous Solar Partner'].map((badge) => (
               <span key={badge} className="flex items-center gap-2 bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold px-4 py-2 rounded-full">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
                 {badge}
@@ -165,7 +168,7 @@ export const About: React.FC = () => {
           <div className="text-center space-y-3">
             <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Visit Our Office</h2>
             <p className="text-slate-500 max-w-xl mx-auto">
-              We are located in the heart of the city. Drop by to explore our range of security cameras and water purifiers in person!
+              We are located in the heart of the city. Drop by to explore our range of security cameras, solar panel systems, and water purifiers in person!
             </p>
           </div>
           <div className="rounded-3xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 p-2">

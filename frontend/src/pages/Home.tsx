@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import {
-  ShieldCheck, ArrowRight, Camera, Droplets, HardDrive, Wrench,
+  ShieldCheck, ArrowRight, Camera, Droplets, HardDrive, Wrench, Sun,
   Truck, Headphones, Award, Star, Users, ThumbsUp, MessageCircle, Play,
   Tag, Copy, Check, Clock, Sparkles, Zap, CheckCircle2
 } from 'lucide-react';
@@ -38,7 +38,7 @@ const Counter: React.FC<{ to: number; suffix?: string }> = ({ to, suffix = '' })
 };
 
 /* ─────────────── Brands Marquee ─────────────── */
-const brands = ['CP Plus', 'Hikvision', 'Dahua', 'Aqua Fresh', 'Seagate', 'Kent', 'Bosch', 'Godrej'];
+const brands = ['CP Plus', 'Hikvision', 'Dahua', 'Aqua Fresh', 'Seagate', 'Kent', 'Tata Solar', 'Luminous', 'Waaree'];
 const BrandsMarquee: React.FC = () => (
   <div className="relative overflow-hidden py-10 border-y border-slate-200/50 dark:border-slate-800/50 bg-slate-50 dark:bg-slate-900/20 select-none">
     <div className="flex items-center gap-24 animate-marquee whitespace-nowrap">
@@ -388,6 +388,15 @@ export const Home: React.FC = () => {
       accent: 'bg-purple-500',
     },
     {
+      slug: 'solar-panels',
+      to: '/shop?category=solar-panels',
+      icon: <Sun className="w-8 h-8" />,
+      label: 'Solar Panels',
+      sub: 'Rooftop & Power',
+      image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&auto=format&fit=crop&q=80',
+      accent: 'bg-yellow-500',
+    },
+    {
       slug: 'accessories',
       to: '/shop?category=accessories',
       icon: <ShieldCheck className="w-8 h-8" />,
@@ -419,6 +428,8 @@ export const Home: React.FC = () => {
         return { icon: <ShieldCheck className="w-8 h-8" />, sub: 'Cables & Spares', accent: 'bg-amber-500', defaultImg: 'https://images.unsplash.com/photo-1597733336794-12d05021d510?w=800&auto=format&fit=crop&q=80' };
       case 'installation-services':
         return { icon: <Wrench className="w-8 h-8" />, sub: 'Book Service', accent: 'bg-emerald-500', defaultImg: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&auto=format&fit=crop&q=80' };
+      case 'solar-panels':
+        return { icon: <Sun className="w-8 h-8" />, sub: 'Rooftop & Power', accent: 'bg-yellow-500', defaultImg: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&auto=format&fit=crop&q=80' };
       default:
         return { icon: <Camera className="w-8 h-8" />, sub: 'Explore Products', accent: 'bg-brand-600', defaultImg: 'https://images.unsplash.com/photo-1582139329536-e7284fece509?w=800&auto=format&fit=crop&q=80' };
     }
@@ -537,7 +548,7 @@ export const Home: React.FC = () => {
                   All Solutions At One Call
                 </p>
                 <p className="text-sm text-slate-300 leading-relaxed max-w-xs">
-                  Authorized CCTV surveillance & copper RO water purifiers with certified doorstep installation.
+                  Authorized CCTV surveillance, solar panel systems & RO water purifiers with certified doorstep installation.
                 </p>
               </div>
 
@@ -602,7 +613,7 @@ export const Home: React.FC = () => {
           </Link>
         </div>
 
-        <div className="flex overflow-x-auto touch-scroll snap-x snap-mandatory flex-nowrap pb-6 gap-4 md:grid md:grid-cols-3 lg:grid-cols-5 md:gap-4 lg:gap-5 md:pb-0 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
+        <div className="flex overflow-x-auto touch-scroll snap-x snap-mandatory flex-nowrap pb-6 gap-4 md:grid md:grid-cols-3 lg:grid-cols-6 md:gap-4 lg:gap-5 md:pb-0 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
           {categories.map((cat, i) => (
             <motion.div
               key={cat.to}
