@@ -8,6 +8,8 @@ import {
 } from 'lucide-react';
 import axios from 'axios';
 import { InvoiceModal } from '../components/common/InvoiceModal';
+import { AdminTabsNav } from '../components/admin/AdminTabsNav';
+import { AdminTableScroll } from '../components/admin/AdminTableScroll';
 
 // ── Tiny toast helper ───────────────────────────────────────────────
 type ToastType = 'success' | 'error' | 'info';
@@ -886,8 +888,8 @@ export const AdminDashboard: React.FC = () => {
         </div>
 
         {/* ── Tabs ── */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-          {[
+        <AdminTabsNav
+          tabs={[
             { key: 'overview', label: 'Overview', icon: BarChart3 },
             { key: 'products', label: `Products (${products.length})`, icon: Package },
             { key: 'orders', label: `Orders (${orders.length})`, icon: ShoppingCart },
@@ -898,17 +900,10 @@ export const AdminDashboard: React.FC = () => {
             { key: 'shipping', label: 'Shipping & Delivery', icon: Truck },
             { key: 'reviews', label: `Feedback (${reviews.length})`, icon: MessageSquare },
             { key: 'cms', label: 'Website CMS', icon: Settings },
-          ].map(({ key, label, icon: Icon }) => (
-            <button
-              key={key}
-              onClick={() => setActiveTab(key as any)}
-              className={`flex items-center gap-1.5 text-xs font-bold px-4 py-2.5 rounded-xl whitespace-nowrap transition-all ${activeTab === key ? 'bg-brand-600 text-white shadow-md' : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 hover:border-brand-300'}`}
-            >
-              <Icon className="w-3.5 h-3.5" />
-              {label}
-            </button>
-          ))}
-        </div>
+          ]}
+          activeTab={activeTab}
+          onChange={setActiveTab}
+        />
 
         {/* ══════════════════════════════════════════════════════ */}
         {/* OVERVIEW TAB */}
@@ -921,7 +916,7 @@ export const AdminDashboard: React.FC = () => {
                 <h3 className="font-bold text-sm text-slate-800 dark:text-slate-200 flex items-center gap-2"><Clock className="w-4 h-4 text-brand-500" /> Recent Orders</h3>
                 <button onClick={() => setActiveTab('orders')} className="text-xs text-brand-600 font-semibold hover:underline">View all →</button>
               </div>
-              <div className="overflow-x-auto">
+              <AdminTableScroll minWidth="650px" tableTitle="Recent Orders">
                 <table className="w-full text-xs">
                   <thead className="bg-slate-50 dark:bg-slate-800/50 text-slate-400 uppercase text-[10px] font-semibold">
                     <tr>
@@ -949,7 +944,7 @@ export const AdminDashboard: React.FC = () => {
                     )}
                   </tbody>
                 </table>
-              </div>
+              </AdminTableScroll>
             </div>
 
             {/* Low Stock */}
@@ -997,7 +992,7 @@ export const AdminDashboard: React.FC = () => {
                 </button>
               </div>
             </div>
-            <div className="overflow-x-auto">
+            <AdminTableScroll minWidth="880px" tableTitle="Products Inventory">
               <table className="w-full text-left text-xs">
                 <thead className="bg-slate-50 dark:bg-slate-800/50 text-slate-400 uppercase text-[10px] font-semibold">
                   <tr>
@@ -1055,7 +1050,7 @@ export const AdminDashboard: React.FC = () => {
                   )}
                 </tbody>
               </table>
-            </div>
+            </AdminTableScroll>
             <div className="px-4 py-2.5 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-400">
               Showing {filteredProducts.length} of {products.length} products
             </div>
@@ -1100,7 +1095,7 @@ export const AdminDashboard: React.FC = () => {
                 </select>
               </div>
             </div>
-            <div className="overflow-x-auto">
+            <AdminTableScroll minWidth="960px" tableTitle="Orders & Logistics">
               <table className="w-full text-left text-xs">
                 <thead className="bg-slate-50 dark:bg-slate-800/50 text-slate-400 uppercase text-[10px] font-semibold">
                   <tr>
@@ -1170,7 +1165,7 @@ export const AdminDashboard: React.FC = () => {
                   )}
                 </tbody>
               </table>
-            </div>
+            </AdminTableScroll>
             <div className="px-4 py-2.5 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-400">
               Showing {filteredOrders.length} of {orders.length} orders
             </div>
@@ -1212,7 +1207,7 @@ export const AdminDashboard: React.FC = () => {
                 </div>
               </div>
 
-              <div className="overflow-x-auto">
+              <AdminTableScroll minWidth="920px" tableTitle="Customer Directory">
                 <table className="w-full text-left text-xs">
                   <thead className="bg-slate-50 dark:bg-slate-800/50 text-slate-400 uppercase text-[10px] font-semibold">
                     <tr>
@@ -1270,7 +1265,7 @@ export const AdminDashboard: React.FC = () => {
                     )}
                   </tbody>
                 </table>
-              </div>
+              </AdminTableScroll>
               <div className="px-4 py-2.5 border-t border-slate-100 dark:border-slate-800 text-[11px] text-slate-400">
                 Showing {filteredCustomers.length} of {customers.length} registered customers
               </div>
